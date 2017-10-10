@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>KCCC weightlifting calc 2015</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="calculations.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
+    <script>
+       $(document).ready(function () {
+         $("#submit").click(function(){
+            var bweight = $("#input-bweight").val();
+            var lweight = $("#input-lweight").val(); 
+            var gender = $("input[name=radio-choice-gender]:checked", "#calc-form").val();
+            $("#out").html("<p>Calculated score is <b>" + getScore(bweight, lweight, gender) + "</b></p>");
+         });  
+       });
+   </script>
+</head>
+
+<body>
+    <div data-role="page">
+        <h3 class="ui-bar ui-bar-a ui-corner-all">KCCC weightlifting score calculator - 2015</h3>
+            <div class="ui-body ui-body-a ui-corner-all">
+                <form id="calc-form">
+                    <label for="input-bweight">Enter body weight (lbs.):</label>
+                    <input data-clear-btn="true" name="input-bweight" pattern="[0-9]*" id="input-bweight" value="" type="number">
+
+                    <label for="slider-lweight">Enter amount lifted (lbs.):</label>
+                    <input data-clear-btn="true" name="input-lweight" pattern="[0-9]*" id="input-lweight" value="" type="number">
+
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false">
+                        <input name="radio-choice-gender" id="radio-choice-male" value="male" checked="checked" type="radio">
+                        <label for="radio-choice-male">male</label>
+                        <input name="radio-choice-gender" id="radio-choice-female" value="female" type="radio">
+                        <label for="radio-choice-female">female</label>
+                    </fieldset>
+
+                    <a href="#popupResults" data-position-to="window" data-transition="flow" data-rel="popup" class="ui-btn ui-icon-gear ui-btn-icon-left" id="submit">Calculate</a>                
+                </form>
+            </div>
+            <div data-role="popup" data-overlay-theme="a" id="popupResults" class="ui-content" style="max-width:280px">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                <p id="out"></p>
+            </div>
+    </div>
+    
+</body>
+</html>
